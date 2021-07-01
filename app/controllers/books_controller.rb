@@ -8,12 +8,13 @@ class BooksController < ApplicationController
   end
 
   def create
-    @books = Book.all##indexから連れてくる
+   # @books = Book.all##indexから連れてくる
     @book = Book.new(book_params)
     if @book.save
       flash[:notice] = "Book was successfully created."
       redirect_to book_path(@book.id)
     else
+      @books = Book.all#投稿に失敗した場合のため、else内に記述
       render :index
     end
   end
